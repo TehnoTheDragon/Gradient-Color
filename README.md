@@ -4,3 +4,4 @@ I needed to add a gradient to the text, but I didn't want to do it manually. The
 ## Tasks
 - [x] Add color picker for gradient
 - [x] Add hex color picker support
+- [ ] Fix annoying bugs
