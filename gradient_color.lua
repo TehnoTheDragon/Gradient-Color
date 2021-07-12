@@ -49,6 +49,16 @@ function Color(r, g, b)
 	end
 	return color
 end
+
+function HexToColor(hex)
+	hex = hex:gsub("#", "")
+	local r, g, b = hex:match("(%w%w)(%w%w)(%w%w)")
+	local function convert(h)
+		return tonumber("0x"..h)
+	end
+	return Color(convert(r), convert(g), convert(b))
+end
+
 -- Regex
 function DeleteTags(text)
 	text = text:gsub("%[center%]%s?", "")
@@ -76,31 +86,75 @@ function GradientText(text, _begin, _finish)
 	local current_color = _begin
 	local alpha = 1 / len
 
+	local position = 0
 	text = text:gsub("%(COLOR_BEGIN%)", function()
 		local color = "[color="..current_color.hex().."]"
 		current_color = current_color.lerp(_finish, alpha)
-		return color
+		position = position + 1
+		if position < len then
+			return color
+		else
+			return ""
+		end
 	end)
 
 	return text
 end
 
+local function ReadColor()
+	print("Red")
+	r = io.read()
+
+	print("Green")
+	g = io.read()
+
+	print("Blue")
+	b = io.read()
+
+	return Color(r, g, b)
+end
+
+--../7_12_2021.txt
+
 print("Gradient Color")
 print("Made by TehnoDragon (7/12/2021)")
 print()
 
+-- Getting and Reading file
 local text = ReadFile(GetFile())
 
+-- Getting First and Second Colors
+local FIRST_COLOR = Color(255, 255, 255)
+local SECOND_COLOR = Color(0, 0, 0)
+
+print("Select Input Color Type: (0 - RGB), (1 - HEX)")
+local INPUT_COLOR_TYPE = tonumber(io.read())
+
+if INPUT_COLOR_TYPE == 0 then
+	print("(RGB) Enter First Color:")
+	FIRST_COLOR = ReadColor()
+
+	print("(RGB) Enter Second Color:")
+	SECOND_COLOR = ReadColor()
+elseif INPUT_COLOR_TYPE == 1 then
+	print("(HEX) Enter First Color:")
+	FIRST_COLOR = HexToColor(io.read())
+
+	print("(HEX) Enter Second Color:")
+	SECOND_COLOR = HexToColor(io.read())
+else
+	print(INPUT_COLOR_TYPE .. ": Input Color Type unsupported")
+	os.execute("pause")
+	exit()
+end
+
+-- Removing Tags
 text = DeleteTags(text)
 
-print("Generate Text")
+-- Generating Gradient
+text = GradientText(text, FIRST_COLOR, SECOND_COLOR)
 
-text = GradientText(text, Color(255, 255, 0), Color(255, 0, 255))
-
-print("Creating new file")
-
+-- Creating new file
 local file = io.open("gradient_text.txt", "w")
 file:write(text)
 file:close()
-
-print("Finish")
