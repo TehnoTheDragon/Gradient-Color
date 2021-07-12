@@ -69,6 +69,7 @@ end
 function ColorMarks(text)
 	text = text:gsub("\n", "(COLOR_END)\n(COLOR_BEGIN)")
 	text = text:gsub("^", "(COLOR_BEGIN)")
+	text = text:gsub("%(COLOR_BEGIN%)%(COLOR_END%)", "")
 	return text
 end
 
