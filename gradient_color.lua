@@ -147,7 +147,10 @@ else
 end
 
 -- Removing Tags
-text = DeleteTags(text)
+print("Remove Tags? 0 - No")
+if tonumber(io.read()) ~= 0 then
+	text = DeleteTags(text)
+end
 
 -- Generating Gradient
 text = GradientText(text, FIRST_COLOR, SECOND_COLOR)
