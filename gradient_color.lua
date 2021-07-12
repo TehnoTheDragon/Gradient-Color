@@ -114,8 +114,6 @@ local function ReadColor()
 	return Color(r, g, b)
 end
 
---../7_12_2021.txt
-
 print("Gradient Color")
 print("Made by TehnoDragon (7/12/2021)")
 print()
