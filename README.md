@@ -7,3 +7,4 @@ At the moment, the program may not work well in some places, which is why someti
 - [x] Add color picker for gradient
 - [x] Add hex color picker support
 - [ ] Fix annoying bugs
+- [x] Add drop file hint
