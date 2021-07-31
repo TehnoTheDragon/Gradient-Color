@@ -1,5 +1,5 @@
 function GetFile()
-	print("Enter path to *.txt:")
+	print("Enter path to *.txt: (or drop text file in terminal)")
 	local filepath = io.read()
 
 	local file = io.open(filepath, 'r')
