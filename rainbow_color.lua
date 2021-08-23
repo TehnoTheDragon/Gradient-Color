@@ -42,7 +42,11 @@ function Color(r, g, b)
 	end
 	function color.hex()
 		local hex = (color.r * 0x10000) + (color.g * 0x100) + (color.b * 0x1)
-		return "#" .. string.format("%02X", hex)
+		local hexString = "#" .. string.format("%02X", hex)
+		while hexString:len() < 7 do
+			hexString = hexString .. "0"
+		end
+		return hexString
 	end
 	function color.tostring()
 		return ("rgb(%d, %d, %d)"):format(color.r, color.g, color.b)
@@ -146,12 +150,12 @@ elseif INPUT_COLOR_TYPE == 1 then
         end
     end
 elseif INPUT_COLOR_TYPE == 2 then
-	table.insert(COLOR_BUFFER, Color(228, 2, 3))
-	table.insert(COLOR_BUFFER, Color(255, 140, 0))
-	table.insert(COLOR_BUFFER, Color(255, 237, 2))
+	table.insert(COLOR_BUFFER, Color(228, 1, 1))
+	table.insert(COLOR_BUFFER, Color(255, 140, 1))
+	table.insert(COLOR_BUFFER, Color(255, 237, 1))
 	table.insert(COLOR_BUFFER, Color(1, 127, 39))
-	table.insert(COLOR_BUFFER, Color(0, 77, 255))
-	table.insert(COLOR_BUFFER, Color(117, 7, 135))
+	table.insert(COLOR_BUFFER, Color(1, 77, 255))
+	table.insert(COLOR_BUFFER, Color(117, 1, 135))
 else
 	print(INPUT_COLOR_TYPE .. ": Input Color Type unsupported")
 	os.execute("pause")
