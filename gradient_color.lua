@@ -104,13 +104,13 @@ end
 
 local function ReadColor()
 	print("Red")
-	r = io.read()
+	local r = io.read()
 
 	print("Green")
-	g = io.read()
+	local g = io.read()
 
 	print("Blue")
-	b = io.read()
+	local b = io.read()
 
 	return Color(r, g, b)
 end
@@ -144,7 +144,7 @@ elseif INPUT_COLOR_TYPE == 1 then
 else
 	print(INPUT_COLOR_TYPE .. ": Input Color Type unsupported")
 	os.execute("pause")
-	exit()
+	os.exit()
 end
 
 -- Removing Tags
