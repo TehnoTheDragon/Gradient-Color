@@ -120,7 +120,7 @@ local text = ReadFile(GetFile())
 -- Getting First and Second Colors
 local COLOR_BUFFER = {}
 
-print("Select Input Color Type: (0 - RGB), (1 - HEX)")
+print("Select Input Color Type: (0 - RGB), (1 - HEX), (2 - \"RAINBOW\" (no) )")
 local INPUT_COLOR_TYPE = tonumber(io.read())
 
 if INPUT_COLOR_TYPE == 0 then
@@ -145,6 +145,13 @@ elseif INPUT_COLOR_TYPE == 1 then
             break
         end
     end
+elseif INPUT_COLOR_TYPE == 2 then
+	table.insert(COLOR_BUFFER, Color(228, 2, 3))
+	table.insert(COLOR_BUFFER, Color(255, 140, 0))
+	table.insert(COLOR_BUFFER, Color(255, 237, 2))
+	table.insert(COLOR_BUFFER, Color(1, 127, 39))
+	table.insert(COLOR_BUFFER, Color(0, 77, 255))
+	table.insert(COLOR_BUFFER, Color(117, 7, 135))
 else
 	print(INPUT_COLOR_TYPE .. ": Input Color Type unsupported")
 	os.execute("pause")
